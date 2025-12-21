@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปแท็ก HTML กิจกรรม 3–5</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        h2 {
+            color: #0d6efd;
+        }
+
+        .box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        code {
+            display: block;
+            background: #272822;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        img {
+            margin-top: 10px;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+        .h2-2{
+            color: rgb(0, 132, 255);
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📘 สรุปแท็ก HTML กิจกรรม 1–5</h1>
+
+<!-- ========================= -->
+<!-- Heading -->
+<!-- ========================= -->
+<div class="box">
+    <h2>1. แท็กหัวข้อ (Heading)</h2>
+    <p>ใช้สำหรับแสดงหัวข้อ โดย <strong>&lt;h1&gt;</strong> ใหญ่ที่สุด</p>
+
+    <code>
+&lt;h1&gt;หัวข้อใหญ่&lt;/h1&gt;
+&lt;h2&gt;หัวข้อรอง&lt;/h2&gt;
+&lt;h3&gt;หัวข้อย่อย&lt;/h3&gt;
+    </code>
+</div>
+
+<!-- ========================= -->
+<!-- Text -->
+<!-- ========================= -->
+<div class="box">
+    <h2>2. แท็กข้อความ</h2>
+    <p>ใช้แสดงข้อความทั่วไป และตกแต่งตัวอักษร</p>
+
+    <code>
+&lt;p&gt;นี่คือข้อความอธิบาย&lt;/p&gt;
+
+&lt;strong&gt;ตัวหนา&lt;/strong&gt;
+&lt;i&gt;ตัวเอียง&lt;/i&gt;
+&lt;u&gt;ขีดเส้นใต้&lt;/u&gt;
+    </code>
+</div>
+
+<!-- ========================= -->
+<!-- Image -->
+<!-- ========================= -->
+<div class="box">
+    <h2>3. แท็กรูปภาพ (img)</h2>
+    <p>ใช้แสดงรูปภาพ โดยนิยมใช้ <strong>External URL</strong></p>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
+         height="120"
+         alt="HTML Logo">
+
+    <code>
+&lt;img src="URL" height="150" alt="คำอธิบายรูป"&gt;
+    </code>
+</div>
+
+<!-- ========================= -->
+<!-- List -->
+<!-- ========================= -->
+
+<!-- ========================= -->
+<!-- Table -->
+<!-- ========================= -->
+
+<!-- ========================= -->
+<!-- Link -->
+<!-- ========================= -->
+<div class="box">
+    <h2>3. แท็กลิงก์ (ตัวอย่าง)</h2>
+    <p>ใช้เชื่อมไปยังเว็บไซต์อื่น</p>
+
+    <a href="https://www.google.com" target="_blank">ไปที่ Google</a>
+
+    <code>
+&lt;a href="https://www.google.com" target="_blank"&gt;Google&lt;/a&gt;
+    </code>
+</div>
+
+<!-- ========================= -->
+<!-- Form -->
+<!-- ========================= -->
+   
+
+</div>
+
+<!-- 
+
+
+กิจกรรม
+
+3-5 
+ 
+ละเอียด
+
+
+
+
+
+
+
+
+
+-->
+<div class="box">
+<body>
+
+
+<hr>
+
+<h2>🔹 4. แท็กรายการ (List) — กิจกรรมที่ 3</h2>
+
+<p><strong>Ordered List (ol)</strong> : รายการแบบมีลำดับเลข</p>
+<pre><code>
+&lt;ol&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<p><strong>Unordered List (ul)</strong> : รายการแบบสัญลักษณ์จุด</p>
+<pre><code>
+&lt;ul&gt;
+  &lt;li&gt;คอมพิวเตอร์&lt;/li&gt;
+  &lt;li&gt;อินเทอร์เน็ต&lt;/li&gt;
+  &lt;li&gt;สมุดจด&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<div class="box">
+    <h2 id="h2-2"style="align-content: center; color: red;">4. แท็กรายการ (ตัวอย่าง)</h2>
+
+    <p><strong>ol</strong> = รายการแบบมีตัวเลข</p>
+    <code>
+&lt;ol&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+&lt;/ol&gt;
+    </code>
+
+    <p><strong>ul</strong> = รายการแบบสัญลักษณ์</p>
+    <code>
+&lt;ul&gt;
+  &lt;li&gt;คอมพิวเตอร์&lt;/li&gt;
+  &lt;li&gt;อินเทอร์เน็ต&lt;/li&gt;
+&lt;/ul&gt;
+    </code>
+</div>
+
+<hr>
+
+<h2>🔹 5. แท็กตาราง (Table) — กิจกรรมที่ 4</h2>
+<p>ใช้แสดงข้อมูลเป็นแถวและคอลัมน์</p>
+
+<ul>
+    <li><code>&lt;table&gt;</code> = ตาราง</li>
+    <li><code>&lt;tr&gt;</code> = แถว</li>
+    <li><code>&lt;th&gt;</code> = หัวตาราง</li>
+    <li><code>&lt;td&gt;</code> = ช่องข้อมูล</li>
+</ul>
+
+<pre><code>
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;ลำดับ&lt;/th&gt;
+    &lt;th&gt;ชื่อสินค้า&lt;/th&gt;
+    &lt;th&gt;ราคา&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;เลย์&lt;/td&gt;
+    &lt;td&gt;22 บาท&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>👉 สามารถใช้ <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> เพื่อความเป็นระเบียบ</p>
+<h3> <a href="#h2-2">ตัวอย่าง</a></h3>
+<hr>
+
+<div class="box">
+    <h2 style="align-content: center; color: red;">5. แท็กตาราง (ตัวอย่าง)</h2>
+    <p>ใช้แสดงข้อมูลเป็นแถวและคอลัมน์</p>
+
+    <table>
+        <tr>
+            <th>ลำดับ</th>
+            <th>ชื่อสินค้า</th>
+            <th>ราคา</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>เลย์</td>
+            <td>22 บาท</td>
+        </tr>
+    </table>
+
+    <code>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;ลำดับ&lt;/th&gt;
+    &lt;th&gt;ชื่อสินค้า&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+    </code>
+</div>
+
+
+<h2>🔹 7. แท็กฟอร์ม (Form) — กิจกรรมที่ 5</h2>
+<p>ใช้รับข้อมูลจากผู้ใช้</p>
+
+<pre><code>
+&lt;form&gt;
+  ชื่อ: &lt;input type="text"&gt;&lt;br&gt;
+  Email: &lt;input type="email"&gt;&lt;br&gt;
+  &lt;input type="submit" value="ส่งข้อมูล"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>ประเภท <code>&lt;input&gt;</code> ที่ใช้บ่อย</p>
+<ul>
+    <li>text – รับข้อความ</li>
+    <li>email – รับอีเมล</li>
+    <li>radio – เลือกได้ 1 ค่า</li>
+    <li>checkbox – เลือกได้หลายค่า</li>
+    <li>submit – ส่งข้อมูล</li>
+    <li>reset – ล้างข้อมูล</li>
+</ul>
+
+<p>ตัวอย่าง radio</p>
+<pre><code>
+เพศ:
+&lt;input type="radio" name="g"&gt; ชาย
+&lt;input type="radio" name="g"&gt; หญิง
+</code></pre>
+
+<p><strong>Textarea</strong> : พิมพ์ข้อความยาว</p>
+<pre><code>
+&lt;textarea rows="4" cols="30"&gt;&lt;/textarea&gt;
+</code></pre>
+
+<p><strong>Select &amp; Option</strong> : เลือกจากรายการ</p>
+<pre><code>
+&lt;select&gt;
+  &lt;option&gt;มัธยมต้น&lt;/option&gt;
+  &lt;option&gt;มัธยมปลาย&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<h3 style="align-content: center; color: red;">ตัวอย่าง กิจกรรม 5</h3>
+<div class="box">
+    <form>
+  ชื่อ:
+  <input type="text"><br><br>
+
+  Email:
+  <input type="email"><br><br>
+
+  เพศ:
+  <input type="radio" name="gender"> ชาย
+  <input type="radio" name="gender"> หญิง
+  <br><br>
+
+  ความคิดเห็น:
+  <br>
+  <textarea rows="4" cols="30"></textarea>
+  <br><br>
+
+  ระดับการศึกษา:
+  <select>
+    <option>มัธยมต้น</option>
+    <option>มัธยมปลาย</option>
+  </select>
+  <br><br>
+
+  <input type="submit" value="ส่งข้อมูล">
+  <input type="reset" value="ล้างข้อมูล">
+</form>
+
+</div>
+<hr>
+
+<p style="text-align:center;"><strong>✔ จบสรุปแท็ก HTML กิจกรรม 3–5</strong></p>
+
+</body>
+</html>
+
+<hr>
+</div>
+<p style="text-align:center;"><strong>📌 สรุป: นี่คือแท็กหลักที่ใช้ในกิจกรรม 3–5 และออกสอบบ่อย</strong></p>
+
+</body>
+</html>
