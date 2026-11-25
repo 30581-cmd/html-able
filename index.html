@@ -1,352 +1,556 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>สรุปแท็ก HTML กิจกรรม 3–5</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #222;
-        }
-
-        h2 {
-            color: #0d6efd;
-        }
-
-        .box {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        code {
-            display: block;
-            background: #272822;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            white-space: pre-wrap;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        th, td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: center;
-        }
-
-        img {
-            margin-top: 10px;
-        }
-
-        hr {
-            margin: 30px 0;
-        }
-        .h2-2{
-            color: rgb(0, 132, 255);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เรียน HTML ครบทุกแท็ก</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700;800&family=Noto+Sans+Thai:wght@400;600;800&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a patient teacher's workbook — clear, friendly, exact
+   IDEA: a survey map of the HTML land; each lesson is a stop on the route
+   PICTURE: a live playground — type HTML on the left, see the page on the right
+   COLOUR and TYPE: sea #bfe3ee, land #fbfbf2, contour brown, ink, route magenta; Overpass + Noto Sans Thai
+   LAYOUT: playground band on top, sticky route of lesson links, then lessons with code beside live result */
+:root{color-scheme:light dark;
+--sea:light-dark(#bfe3ee,#123341);--land:light-dark(#fbfbf2,#0d1c24);--card:light-dark(#ffffff,#132a35);
+--ink:light-dark(#13242e,#e7f1f4);--soft:light-dark(#4b5d66,#a9bfc8);--brown:light-dark(#a8551b,#e0955c);
+--mag:light-dark(#d6127e,#ff5cad);--line:light-dark(#d8dccd,#24414e);--code:#13242e;--codeink:#e7f1f4}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--land);color:var(--ink);font:16.5px/1.7 Overpass,"Noto Sans Thai",system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2,h3{font-family:Overpass,"Noto Sans Thai",sans-serif;line-height:1.15;text-wrap:balance;margin:0 0 .4em}
+h1{font-size:clamp(32px,5vw,50px);font-weight:800}
+h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
+h3{font-size:20px;font-weight:700}
+p{margin:0 0 1em;max-width:70ch}
+a{color:var(--mag)}
+code,pre,textarea.ed{font-family:"Overpass Mono",ui-monospace,monospace}
+:not(pre)>code{background:light-dark(#efe9da,#1d3a47);color:var(--brown);padding:1px 6px;border-radius:5px;font-size:.92em;overflow-wrap:anywhere}
+pre,.scroll{overflow-x:auto}
+.top{background:var(--sea);border-bottom:2px solid var(--brown)}
+.lead{color:var(--soft);font-size:17px}
+.play{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--card);margin-top:18px;box-shadow:6px 6px 0 var(--brown)}
+.pane{display:flex;flex-direction:column}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 10px;background:var(--code);color:var(--codeink);font-size:14px}
+.bar b{margin-inline-end:auto}
+.pane.out .bar{background:light-dark(#e6efe9,#1b3743);color:var(--ink)}
+textarea.ed{flex:1;min-height:360px;border:0;resize:vertical;padding:14px;font-size:15px;line-height:1.6;background:var(--code);color:var(--codeink);tab-size:2;outline:none}
+textarea.ed:focus-visible{box-shadow:inset 0 0 0 3px var(--mag)}
+iframe{border:0;width:100%;background:#fff;display:block}
+.pane.out iframe{flex:1;min-height:360px}
+button,.btn{font:inherit;font-size:14px;font-weight:700;min-height:40px;padding:6px 14px;border-radius:8px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+button.pri{background:var(--mag);border-color:var(--mag);color:#fff}
+button:focus-visible{outline:3px solid var(--mag);outline-offset:2px}
+.route{position:sticky;top:0;z-index:5;background:var(--land);border-bottom:1px solid var(--line)}
+.route .scroll{display:flex;gap:6px;padding:10px max(5vw,16px);max-width:1240px;margin:0 auto}
+.route a{flex:none;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line)}
+.route a:hover{border-color:var(--mag);color:var(--mag)}
+@media(max-width:900px){.route{position:static}}
+section.band{border-bottom:1px dashed var(--line)}
+.stop{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--brown);font-size:15px;margin-bottom:6px}
+.stop::before{content:"";width:14px;height:14px;border-radius:50%;border:3px solid var(--mag);background:var(--land)}
+.tags{border-collapse:collapse;width:100%;max-width:820px;margin:8px 0 22px;font-size:15px;background:var(--card)}
+.tags th,.tags td{border:1px solid var(--line);padding:8px 12px;text-align:start;vertical-align:top}
+.tags th{background:light-dark(#f1ede0,#173341)}
+.tags td:first-child{white-space:nowrap}
+.ex{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin:16px 0}
+.ex h3{grid-column:1/-1;margin:0;padding:12px 16px;border-bottom:1.5px solid var(--line);font-size:17px}
+.ex .note{grid-column:1/-1;padding:10px 16px;margin:0;max-width:none;font-size:15px;color:var(--soft);border-top:1.5px solid var(--line)}
+.ex pre{margin:0;padding:14px 16px;background:var(--code);color:var(--codeink);font-size:14px;line-height:1.6}
+.ex .res{position:relative;border-inline-start:1.5px solid var(--line)}
+.ex .res span{position:absolute;top:6px;inset-inline-end:8px;font-size:12px;color:#4b5d66;background:#eef3f1;padding:0 8px;border-radius:6px}
+.ex .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px;border-top:1.5px solid var(--line)}
+.t{color:#ff8ac6}.a{color:#ffd28a}.s{color:#9fe3b8}.c{color:#7d97a3}
+.tip{border-inline-start:4px solid var(--brown);background:light-dark(#f6f0e2,#16303c);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;max-width:820px}
+.task{border:2px dashed var(--mag);border-radius:12px;padding:14px 18px;margin:20px 0;max-width:900px}
+.task ol{margin:.3em 0 .8em;padding-inline-start:1.3em}
+details summary{cursor:pointer;font-weight:700;color:var(--mag);min-height:40px;display:flex;align-items:center}
+.quiz .q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;margin:12px 0;max-width:820px}
+.quiz label{display:flex;gap:10px;align-items:center;min-height:40px;cursor:pointer}
+.quiz input{width:20px;height:20px;accent-color:var(--mag)}
+.quiz .fb{font-weight:700;margin:6px 0 0}
+.ok{color:light-dark(#1a7a3c,#6fe39a)}.no{color:var(--mag)}
+.score{font-size:clamp(28px,4vw,40px);font-weight:800}
+.mist{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.mist div{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.mist b{display:block;margin-bottom:4px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--land);padding:10px 18px;border-radius:10px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+footer{padding:32px max(5vw,16px);text-align:center;color:var(--soft);font-size:14px}
+@media(max-width:760px){.play,.ex{grid-template-columns:minmax(0,1fr)}.ex .res{border-inline-start:0;border-top:1.5px solid var(--line)}textarea.ed,.pane.out iframe{min-height:260px}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start;white-space:normal!important}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;font-weight:700}.stack td:empty{display:none}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
 </head>
-
 <body>
 
-<h1>📘 สรุปแท็ก HTML กิจกรรม 1–5</h1>
+<header class="top band">
+  <div class="wrap">
+    <h1>เรียน HTML ตั้งแต่โครงสร้างหน้าเว็บ จนถึงฟอร์มรับข้อมูล</h1>
+    <p class="lead">ทุกตัวอย่างในหน้านี้กด “ลองในสนามทดลอง” ได้ โค้ดจะมาโผล่ในกล่องด้านล่าง แก้แล้วเห็นผลทันที ครอบคลุมกิจกรรม 1–5: หัวข้อและข้อความ รูปภาพ ลิงก์ รายการ ตาราง และฟอร์ม</p>
+    <div class="play" id="playground">
+      <div class="pane">
+        <div class="bar"><b>โค้ด HTML</b><button id="pReset" type="button">เริ่มใหม่</button><button id="pCopy" type="button">คัดลอก</button></div>
+        <textarea class="ed" id="ed" spellcheck="false" aria-label="ช่องพิมพ์โค้ด HTML"></textarea>
+      </div>
+      <div class="pane out">
+        <div class="bar"><b>ผลลัพธ์บนเว็บ</b><span>อัปเดตอัตโนมัติ</span></div>
+        <iframe id="out" sandbox title="ผลลัพธ์ของโค้ด"></iframe>
+      </div>
+    </div>
+  </div>
+</header>
 
-<!-- ========================= -->
-<!-- Heading -->
-<!-- ========================= -->
-<div class="box">
-    <h2>1. แท็กหัวข้อ (Heading)</h2>
-    <p>ใช้สำหรับแสดงหัวข้อ โดย <strong>&lt;h1&gt;</strong> ใหญ่ที่สุด</p>
+<nav class="route" aria-label="บทเรียน"><div class="scroll" id="route"></div></nav>
 
-    <code>
-&lt;h1&gt;หัวข้อใหญ่&lt;/h1&gt;
-&lt;h2&gt;หัวข้อรอง&lt;/h2&gt;
-&lt;h3&gt;หัวข้อย่อย&lt;/h3&gt;
-    </code>
-</div>
+<main id="lessons"></main>
 
-<!-- ========================= -->
-<!-- Text -->
-<!-- ========================= -->
-<div class="box">
-    <h2>2. แท็กข้อความ</h2>
-    <p>ใช้แสดงข้อความทั่วไป และตกแต่งตัวอักษร</p>
+<section class="band" id="mistakes"><div class="wrap">
+  <div class="stop">จุดที่ต้องระวัง</div>
+  <h2>ข้อผิดพลาดที่พบบ่อย และวิธีแก้</h2>
+  <div class="mist" id="mistList"></div>
+</div></section>
 
-    <code>
-&lt;p&gt;นี่คือข้อความอธิบาย&lt;/p&gt;
+<section class="band quiz" id="quiz"><div class="wrap">
+  <div class="stop">ทดสอบตัวเอง</div>
+  <h2>แบบทดสอบท้ายบท 10 ข้อ</h2>
+  <p>เลือกคำตอบให้ครบแล้วกดตรวจ ระบบจะบอกเฉลยพร้อมเหตุผลทุกข้อ</p>
+  <div id="qList"></div>
+  <p><button class="pri" id="qCheck" type="button">ตรวจคำตอบ</button> <button id="qClear" type="button">ล้างคำตอบ</button></p>
+  <p class="score" id="qScore" aria-live="polite"></p>
+</div></section>
 
-&lt;strong&gt;ตัวหนา&lt;/strong&gt;
-&lt;i&gt;ตัวเอียง&lt;/i&gt;
-&lt;u&gt;ขีดเส้นใต้&lt;/u&gt;
-    </code>
-</div>
+<section class="band" id="cheat"><div class="wrap">
+  <div class="stop">สรุปท้ายเล่ม</div>
+  <h2>ตารางสรุปแท็กทั้งหมด สำหรับทบทวนก่อนสอบ</h2>
+  <table class="tags stack" id="cheatTable"><thead><tr><th>แท็ก</th><th>หมวด</th><th>ใช้ทำอะไร</th></tr></thead><tbody></tbody></table>
+</div></section>
 
-<!-- ========================= -->
-<!-- Image -->
-<!-- ========================= -->
-<div class="box">
-    <h2>3. แท็กรูปภาพ (img)</h2>
-    <p>ใช้แสดงรูปภาพ โดยนิยมใช้ <strong>External URL</strong></p>
+<footer>โดย ธรรมเทพ กลิ่นไกล 2568</footer>
+<div class="toast" id="toast" role="status"></div>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
-         height="120"
-         alt="HTML Logo">
+<script>
+{
+const FLOWER="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect width="200" height="140" fill="#bfe3ee"/><rect y="100" width="200" height="40" fill="#7cbf6a"/><path d="M100 100V60" stroke="#2f7a3a" stroke-width="5"/><g fill="#d6127e"><circle cx="100" cy="38" r="14"/><circle cx="118" cy="52" r="14"/><circle cx="82" cy="52" r="14"/><circle cx="110" cy="70" r="14"/><circle cx="90" cy="70" r="14"/></g><circle cx="100" cy="56" r="10" fill="#ffd23f"/><circle cx="170" cy="26" r="14" fill="#ffd23f"/></svg>');
+const BASE='<style>body{font-family:system-ui,"Noto Sans Thai",sans-serif;margin:14px;line-height:1.6;color:#13242e}</style>';
+const prep=c=>BASE+c.replaceAll('flower.jpg',FLOWER);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const hl=s=>esc(s).replace(/(&lt;!--[\s\S]*?--&gt;)/g,'<i class="c">$1</i>').replace(/(&lt;\/?)([a-zA-Z0-9!]+)/g,'$1<i class="t">$2</i>').replace(/ ([a-z-]+)=(&quot;[^&]*?&quot;)/g,' <i class="a">$1</i>=<i class="s">$2</i>');
+const EX={};
 
-    <code>
-&lt;img src="URL" height="150" alt="คำอธิบายรูป"&gt;
-    </code>
-</div>
-
-<!-- ========================= -->
-<!-- List -->
-<!-- ========================= -->
-
-<!-- ========================= -->
-<!-- Table -->
-<!-- ========================= -->
-
-<!-- ========================= -->
-<!-- Link -->
-<!-- ========================= -->
-<div class="box">
-    <h2>3. แท็กลิงก์ (ตัวอย่าง)</h2>
-    <p>ใช้เชื่อมไปยังเว็บไซต์อื่น</p>
-
-    <a href="https://www.google.com" target="_blank">ไปที่ Google</a>
-
-    <code>
-&lt;a href="https://www.google.com" target="_blank"&gt;Google&lt;/a&gt;
-    </code>
-</div>
-
-<!-- ========================= -->
-<!-- Form -->
-<!-- ========================= -->
-   
-
-</div>
-
-<!-- 
-
-
-กิจกรรม
-
-3-5 
- 
-ละเอียด
-
-
-
-
-
-
-
-
-
--->
-<div class="box">
+const L=[
+{id:'structure',n:'บทที่ 1',t:'โครงสร้างพื้นฐานของหน้าเว็บ',
+ intro:'ทุกหน้าเว็บมีโครงเหมือนกัน: <code>&lt;head&gt;</code> เก็บข้อมูลที่ไม่แสดงบนหน้า เช่น ชื่อแท็บและการตั้งค่าภาษา ส่วน <code>&lt;body&gt;</code> คือทุกอย่างที่ผู้ชมเห็น แท็กส่วนใหญ่มีแท็กเปิดและแท็กปิด เช่น <code>&lt;p&gt;...&lt;/p&gt;</code> บางแท็กไม่มีแท็กปิด เช่น <code>&lt;br&gt;</code> <code>&lt;img&gt;</code> <code>&lt;input&gt;</code>',
+ tags:[['<!DOCTYPE html>','บอกเบราว์เซอร์ว่าเป็น HTML5 ต้องอยู่บรรทัดแรก'],['<html lang="th">','แท็กครอบทั้งหน้า lang บอกภาษาของเนื้อหา'],['<head>','ส่วนหัว เก็บ meta, title, style'],['<meta charset="UTF-8">','ทำให้แสดงภาษาไทยได้ถูกต้อง'],['<title>','ข้อความบนแท็บเบราว์เซอร์'],['<body>','ส่วนเนื้อหาที่แสดงผล'],['<!-- -->','คอมเมนต์ ไม่แสดงบนหน้าเว็บ']],
+ ex:[{t:'โครงหน้าเว็บที่สมบูรณ์',h:170,c:`<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>หน้าแรกของฉัน</title>
+</head>
 <body>
+  <!-- ข้อความนี้เป็นคอมเมนต์ ไม่แสดงผล -->
+  <h1>สวัสดีชาวโลก</h1>
+  <p>นี่คือเว็บเพจแรกของฉัน</p>
+</body>
+</html>`,note:'ไฟล์ต้องบันทึกนามสกุล .html เช่น index.html แล้วเปิดด้วยเบราว์เซอร์'}],
+ tip:'ซ้อนแท็กให้ถูกลำดับเสมอ: เปิดทีหลังต้องปิดก่อน เช่น <code>&lt;p&gt;&lt;strong&gt;...&lt;/strong&gt;&lt;/p&gt;</code> ไม่ใช่ <code>&lt;p&gt;&lt;strong&gt;...&lt;/p&gt;&lt;/strong&gt;</code>'},
 
-
+{id:'text',n:'บทที่ 2',t:'หัวข้อและการจัดข้อความ',
+ intro:'หัวข้อมี 6 ระดับ <code>&lt;h1&gt;</code> ใหญ่และสำคัญที่สุด ใช้ 1 ครั้งต่อหน้า ไล่ลงไปจนถึง <code>&lt;h6&gt;</code> ข้อความทั่วไปใส่ใน <code>&lt;p&gt;</code> การกด Enter หลายครั้งในโค้ดไม่ทำให้ขึ้นบรรทัดใหม่ ต้องใช้ <code>&lt;br&gt;</code>',
+ tags:[['<h1> – <h6>','หัวข้อ 6 ระดับ'],['<p>','ย่อหน้า'],['<br>','ขึ้นบรรทัดใหม่ (ไม่มีแท็กปิด)'],['<hr>','เส้นคั่นแนวนอน'],['<strong> / <b>','ตัวหนา (strong = สำคัญ)'],['<em> / <i>','ตัวเอียง (em = เน้นเสียง)'],['<u>','ขีดเส้นใต้'],['<mark>','ไฮไลต์'],['<sub> / <sup>','ตัวห้อย / ตัวยก'],['<del> / <ins>','ขีดฆ่า / ข้อความที่เพิ่ม'],['<span>','ครอบข้อความบางส่วนเพื่อแต่งด้วย CSS'],['&lt; &gt; &amp; &nbsp;','อักขระพิเศษ: < > & และช่องว่าง']],
+ ex:[{t:'หัวข้อทุกระดับ',h:300,c:`<h1>หัวข้อ h1</h1>
+<h2>หัวข้อ h2</h2>
+<h3>หัวข้อ h3</h3>
+<h4>หัวข้อ h4</h4>
+<h5>หัวข้อ h5</h5>
+<h6>หัวข้อ h6</h6>`},
+ {t:'ตกแต่งตัวอักษร',h:250,c:`<p>ข้อความ <strong>ตัวหนา</strong>, <em>ตัวเอียง</em>,
+<u>ขีดเส้นใต้</u> และ <mark>ไฮไลต์</mark></p>
+<p>สูตรน้ำ H<sub>2</sub>O และ 10<sup>2</sup> = 100</p>
+<p>บรรทัดแรก<br>บรรทัดที่สอง</p>
 <hr>
+<p>ราคา <del>50 บาท</del> <ins>เหลือ 35 บาท</ins></p>
+<p>เขียนแท็กให้เห็นบนจอ: &lt;p&gt;</p>
+<p>สีพิเศษ: <span style="color:red;">ตัวแดง</span></p>`,note:'ถ้าอยากให้เห็นคำว่า <p> บนหน้าเว็บ ต้องพิมพ์ &lt;p&gt; ไม่เช่นนั้นเบราว์เซอร์จะคิดว่าเป็นแท็กจริง'}]},
 
-<h2>🔹 4. แท็กรายการ (List) — กิจกรรมที่ 3</h2>
+{id:'image',n:'บทที่ 3',t:'รูปภาพ <img>',
+ intro:'<code>&lt;img&gt;</code> ไม่มีแท็กปิด ต้องมี <code>src</code> บอกที่อยู่รูป และควรมี <code>alt</code> บอกว่ารูปคืออะไร (แสดงเมื่อรูปโหลดไม่ขึ้น และโปรแกรมอ่านหน้าจอใช้อ่านให้ผู้พิการทางสายตา) ที่อยู่รูปมี 2 แบบ: <strong>External URL</strong> เช่น <code>https://...</code> และ <strong>ไฟล์ในเครื่อง</strong> เช่น <code>images/cat.jpg</code>',
+ tags:[['src','ที่อยู่ของรูป (จำเป็น)'],['alt','คำอธิบายรูป (ควรมีเสมอ)'],['width / height','ความกว้าง / สูง หน่วยพิกเซล ใส่ค่าเดียวรูปจะไม่เบี้ยว'],['title','ข้อความที่ขึ้นเมื่อเอาเมาส์ชี้'],['<figure> + <figcaption>','จับรูปคู่กับคำบรรยายใต้รูป']],
+ ex:[{t:'แสดงรูปและกำหนดขนาด',h:200,c:`<img src="flower.jpg" alt="ดอกไม้สีชมพู" width="200">
+<img src="flower.jpg" alt="ดอกไม้เล็ก" width="100" title="ชี้แล้วเห็นข้อความนี้">`,note:'ในหน้านี้ flower.jpg เป็นรูปตัวอย่าง บนเว็บจริงให้ใช้ชื่อไฟล์ของตัวเอง หรือ URL เต็ม เช่น src="https://upload.wikimedia.org/...svg"'},
+ {t:'รูปพร้อมคำบรรยาย',h:230,c:`<figure>
+  <img src="flower.jpg" alt="ดอกไม้" width="220">
+  <figcaption>ภาพที่ 1 ดอกไม้ในสวนโรงเรียน</figcaption>
+</figure>`},
+ {t:'เมื่อรูปโหลดไม่ขึ้น alt จะแสดงแทน',h:90,c:`<img src="ไม่มีไฟล์นี้.jpg" alt="รูปโลโก้โรงเรียน">`}]},
 
-<p><strong>Ordered List (ol)</strong> : รายการแบบมีลำดับเลข</p>
-<pre><code>
-&lt;ol&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-  &lt;li&gt;JavaScript&lt;/li&gt;
-&lt;/ol&gt;
-</code></pre>
+{id:'link',n:'บทที่ 4',t:'ลิงก์ <a>',
+ intro:'<code>&lt;a&gt;</code> ย่อมาจาก anchor ใช้ <code>href</code> บอกปลายทาง ลิงก์ไปได้ทั้งเว็บอื่น หน้าอื่นในเว็บเรา หัวข้อในหน้าเดียวกัน (ใส่ <code>#</code> ตามด้วย id) และอีเมล อะไรก็ตามที่อยู่ระหว่าง <code>&lt;a&gt;</code> กับ <code>&lt;/a&gt;</code> จะกดได้ รวมถึงรูปภาพ',
+ tags:[['href="https://..."','ไปเว็บไซต์อื่น'],['href="about.html"','ไปหน้าอื่นในเว็บเดียวกัน'],['href="#id"','กระโดดไปส่วนที่มี id นั้นในหน้าเดียวกัน'],['href="mailto:..."','เปิดโปรแกรมส่งอีเมล'],['target="_blank"','เปิดในแท็บใหม่']],
+ ex:[{t:'ลิงก์ทุกแบบ',h:240,c:`<a href="https://www.google.com" target="_blank">ไปที่ Google (แท็บใหม่)</a><br>
+<a href="about.html">ไปหน้าเกี่ยวกับเรา</a><br>
+<a href="#contact">กระโดดไปหัวข้อติดต่อ</a><br>
+<a href="mailto:teacher@school.ac.th">ส่งอีเมลหาครู</a><br>
+<a href="https://www.google.com">
+  <img src="flower.jpg" alt="รูปที่กดได้" width="80">
+</a>
+<h3 id="contact">ติดต่อ</h3>`,note:'id ต้องไม่ซ้ำกันในหน้าเดียว และใน href ต้องมี # นำหน้า แต่ใน id ไม่ต้องมี'}]},
 
-<p><strong>Unordered List (ul)</strong> : รายการแบบสัญลักษณ์จุด</p>
-<pre><code>
-&lt;ul&gt;
-  &lt;li&gt;คอมพิวเตอร์&lt;/li&gt;
-  &lt;li&gt;อินเทอร์เน็ต&lt;/li&gt;
-  &lt;li&gt;สมุดจด&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<div class="box">
-    <h2 id="h2-2"style="align-content: center; color: red;">4. แท็กรายการ (ตัวอย่าง)</h2>
+{id:'list',n:'กิจกรรมที่ 3',t:'รายการ (List)',
+ intro:'มี 3 แบบ: <code>&lt;ol&gt;</code> รายการมีลำดับ (ordered) <code>&lt;ul&gt;</code> รายการไม่มีลำดับ ใช้จุด (unordered) และ <code>&lt;dl&gt;</code> รายการคำศัพท์กับความหมาย ทุกข้อใน ol และ ul ต้องอยู่ใน <code>&lt;li&gt;</code> (list item) และจะซ้อนรายการในรายการก็ได้',
+ tags:[['<ol>','รายการเรียงลำดับ 1 2 3'],['<ul>','รายการแบบสัญลักษณ์จุด'],['<li>','แต่ละข้อในรายการ'],['type="1|A|a|I|i"','ชนิดตัวเลขของ ol'],['start="5"','เริ่มนับที่เลข 5'],['reversed','นับถอยหลัง'],['style="list-style-type:square"','เปลี่ยนสัญลักษณ์ของ ul (disc, circle, square, none)'],['<dl> <dt> <dd>','รายการคำ (dt) กับคำอธิบาย (dd)']],
+ ex:[{t:'ol และ ul พื้นฐาน',h:250,c:`<h3>ขั้นตอนเปิดคอมพิวเตอร์</h3>
+<ol>
+  <li>กดปุ่มเปิดเครื่อง</li>
+  <li>ใส่รหัสผ่าน</li>
+  <li>เปิดโปรแกรม</li>
+</ol>
 
-    <p><strong>ol</strong> = รายการแบบมีตัวเลข</p>
-    <code>
-&lt;ol&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-&lt;/ol&gt;
-    </code>
-
-    <p><strong>ul</strong> = รายการแบบสัญลักษณ์</p>
-    <code>
-&lt;ul&gt;
-  &lt;li&gt;คอมพิวเตอร์&lt;/li&gt;
-  &lt;li&gt;อินเทอร์เน็ต&lt;/li&gt;
-&lt;/ul&gt;
-    </code>
-</div>
-
-<hr>
-
-<h2>🔹 5. แท็กตาราง (Table) — กิจกรรมที่ 4</h2>
-<p>ใช้แสดงข้อมูลเป็นแถวและคอลัมน์</p>
-
+<h3>อุปกรณ์การเรียน</h3>
 <ul>
-    <li><code>&lt;table&gt;</code> = ตาราง</li>
-    <li><code>&lt;tr&gt;</code> = แถว</li>
-    <li><code>&lt;th&gt;</code> = หัวตาราง</li>
-    <li><code>&lt;td&gt;</code> = ช่องข้อมูล</li>
-</ul>
+  <li>คอมพิวเตอร์</li>
+  <li>อินเทอร์เน็ต</li>
+  <li>สมุดจด</li>
+</ul>`},
+ {t:'เปลี่ยนชนิดตัวเลขและสัญลักษณ์',h:300,c:`<ol type="A">
+  <li>ข้อ ก</li>
+  <li>ข้อ ข</li>
+</ol>
+<ol type="I" start="4">
+  <li>เริ่มที่ IV</li>
+  <li>ต่อด้วย V</li>
+</ol>
+<ol reversed>
+  <li>สาม</li><li>สอง</li><li>หนึ่ง</li>
+</ol>
+<ul style="list-style-type: square;">
+  <li>สัญลักษณ์สี่เหลี่ยม</li>
+</ul>`},
+ {t:'รายการซ้อนรายการ',h:260,c:`<ol>
+  <li>ภาษาสำหรับเว็บ
+    <ul>
+      <li>HTML – โครงสร้าง</li>
+      <li>CSS – ความสวยงาม</li>
+      <li>JavaScript – การทำงาน</li>
+    </ul>
+  </li>
+  <li>โปรแกรมที่ใช้
+    <ul>
+      <li>VS Code</li>
+      <li>Google Chrome</li>
+    </ul>
+  </li>
+</ol>`,note:'รายการย่อยต้องวางไว้ "ข้างใน" <li> ของข้อแม่ ก่อน </li> ปิด'},
+ {t:'รายการคำศัพท์ dl',h:190,c:`<dl>
+  <dt>HTML</dt>
+  <dd>ภาษาสร้างโครงสร้างหน้าเว็บ</dd>
+  <dt>CSS</dt>
+  <dd>ภาษาตกแต่งหน้าเว็บ</dd>
+</dl>`}],
+ task:{q:'สร้างหน้า "ตารางชีวิตประจำวัน" ที่มี',items:['หัวข้อ h2 ว่า “กิจวัตรตอนเช้า” และ ol 4 ขั้นตอน เป็นตัวอักษร a b c d','หัวข้อ h2 ว่า “ของในกระเป๋า” และ ul แบบสัญลักษณ์วงกลม (circle) 3 ข้อ','ให้ข้อ “สมุด” มีรายการย่อย 2 ข้อ: สมุดคณิต และ สมุดภาษาไทย'],a:`<h2>กิจวัตรตอนเช้า</h2>
+<ol type="a">
+  <li>ตื่นนอน</li>
+  <li>อาบน้ำแต่งตัว</li>
+  <li>กินข้าวเช้า</li>
+  <li>เดินทางไปโรงเรียน</li>
+</ol>
 
-<pre><code>
-&lt;table border="1"&gt;
-  &lt;tr&gt;
-    &lt;th&gt;ลำดับ&lt;/th&gt;
-    &lt;th&gt;ชื่อสินค้า&lt;/th&gt;
-    &lt;th&gt;ราคา&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;1&lt;/td&gt;
-    &lt;td&gt;เลย์&lt;/td&gt;
-    &lt;td&gt;22 บาท&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-</code></pre>
+<h2>ของในกระเป๋า</h2>
+<ul style="list-style-type: circle;">
+  <li>กล่องดินสอ</li>
+  <li>สมุด
+    <ul>
+      <li>สมุดคณิต</li>
+      <li>สมุดภาษาไทย</li>
+    </ul>
+  </li>
+  <li>ขวดน้ำ</li>
+</ul>`}},
 
-<p>👉 สามารถใช้ <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> เพื่อความเป็นระเบียบ</p>
-<h3> <a href="#h2-2">ตัวอย่าง</a></h3>
-<hr>
+{id:'table',n:'กิจกรรมที่ 4',t:'ตาราง (Table)',
+ intro:'ตารางสร้างทีละแถว: <code>&lt;table&gt;</code> ครอบทั้งหมด ข้างในมี <code>&lt;tr&gt;</code> (table row) แต่ละแถว และในแถวมีช่อง <code>&lt;th&gt;</code> (หัวตาราง ตัวหนาและอยู่กลาง) หรือ <code>&lt;td&gt;</code> (ข้อมูล) ทุกแถวควรมีจำนวนช่องเท่ากัน ถ้าต้องการรวมช่องให้ใช้ <code>colspan</code> (รวมแนวนอน) หรือ <code>rowspan</code> (รวมแนวตั้ง)',
+ tags:[['<table>','ตาราง'],['<caption>','ชื่อตาราง แสดงด้านบน'],['<tr>','แถว (table row)'],['<th>','ช่องหัวตาราง (table header)'],['<td>','ช่องข้อมูล (table data)'],['<thead> <tbody> <tfoot>','แบ่งส่วนหัว เนื้อหา และท้ายตาราง'],['border="1"','ใส่เส้นขอบ (แบบเก่า ปัจจุบันนิยมใช้ CSS)'],['colspan="2"','ช่องนี้กว้าง 2 คอลัมน์'],['rowspan="2"','ช่องนี้สูง 2 แถว']],
+ ex:[{t:'ตารางพื้นฐาน',h:160,c:`<table border="1">
+  <tr>
+    <th>ลำดับ</th>
+    <th>ชื่อสินค้า</th>
+    <th>ราคา</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>เลย์</td>
+    <td>22 บาท</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>นมกล่อง</td>
+    <td>12 บาท</td>
+  </tr>
+</table>`},
+ {t:'ตารางเต็มรูปแบบ caption / thead / tbody / tfoot',h:230,c:`<table border="1" cellpadding="8">
+  <caption>รายการซื้อของสหกรณ์</caption>
+  <thead>
+    <tr><th>สินค้า</th><th>จำนวน</th><th>ราคา</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ปากกา</td><td>2</td><td>20</td></tr>
+    <tr><td>สมุด</td><td>3</td><td>45</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><th colspan="2">รวม</th><th>65</th></tr>
+  </tfoot>
+</table>`},
+ {t:'รวมช่องด้วย colspan และ rowspan (ตารางเรียน)',h:220,c:`<table border="1" cellpadding="8">
+  <tr>
+    <th>วัน</th>
+    <th>คาบ 1</th>
+    <th>คาบ 2</th>
+    <th>คาบ 3</th>
+  </tr>
+  <tr>
+    <td>จันทร์</td>
+    <td colspan="2">คอมพิวเตอร์ (2 คาบ)</td>
+    <td>คณิต</td>
+  </tr>
+  <tr>
+    <td>อังคาร</td>
+    <td>ไทย</td>
+    <td rowspan="2">พละ</td>
+    <td>อังกฤษ</td>
+  </tr>
+  <tr>
+    <td>พุธ</td>
+    <td>วิทย์</td>
+    <td>สังคม</td>
+  </tr>
+</table>`,note:'แถวพุธมีแค่ 3 ช่อง เพราะช่อง "พละ" จากแถวอังคารยืดลงมากินที่ไว้แล้ว 1 ช่อง'},
+ {t:'แต่งตารางด้วย CSS',h:190,c:`<style>
+  table { border-collapse: collapse; width: 100%; }
+  th { background: #0d6efd; color: white; }
+  th, td { border: 1px solid #999; padding: 8px; text-align: center; }
+  tr:nth-child(even) { background: #f2f2f2; }
+</style>
+<table>
+  <tr><th>ชื่อ</th><th>คะแนน</th></tr>
+  <tr><td>มานี</td><td>18</td></tr>
+  <tr><td>ชูใจ</td><td>20</td></tr>
+  <tr><td>ปิติ</td><td>15</td></tr>
+</table>`,note:'border-collapse: collapse ทำให้เส้นขอบรวมเป็นเส้นเดียว ไม่เป็นเส้นคู่'}],
+ task:{q:'สร้างตาราง "คะแนนสอบ" ที่มี',items:['caption ว่า “คะแนนวิชาคอมพิวเตอร์”','หัวตาราง: ชื่อ, เก็บ, สอบ, รวม','ข้อมูลนักเรียน 3 คน','แถวสุดท้าย (tfoot) มีช่อง “ค่าเฉลี่ย” ที่รวม 3 ช่องแรกด้วย colspan'],a:`<table border="1" cellpadding="8">
+  <caption>คะแนนวิชาคอมพิวเตอร์</caption>
+  <thead>
+    <tr><th>ชื่อ</th><th>เก็บ</th><th>สอบ</th><th>รวม</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>มานี</td><td>40</td><td>45</td><td>85</td></tr>
+    <tr><td>ชูใจ</td><td>35</td><td>40</td><td>75</td></tr>
+    <tr><td>ปิติ</td><td>30</td><td>35</td><td>65</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><th colspan="3">ค่าเฉลี่ย</th><th>75</th></tr>
+  </tfoot>
+</table>`}},
 
-<div class="box">
-    <h2 style="align-content: center; color: red;">5. แท็กตาราง (ตัวอย่าง)</h2>
-    <p>ใช้แสดงข้อมูลเป็นแถวและคอลัมน์</p>
-
-    <table>
-        <tr>
-            <th>ลำดับ</th>
-            <th>ชื่อสินค้า</th>
-            <th>ราคา</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>เลย์</td>
-            <td>22 บาท</td>
-        </tr>
-    </table>
-
-    <code>
-&lt;table&gt;
-  &lt;tr&gt;
-    &lt;th&gt;ลำดับ&lt;/th&gt;
-    &lt;th&gt;ชื่อสินค้า&lt;/th&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-    </code>
-</div>
-
-
-<h2>🔹 7. แท็กฟอร์ม (Form) — กิจกรรมที่ 5</h2>
-<p>ใช้รับข้อมูลจากผู้ใช้</p>
-
-<pre><code>
-&lt;form&gt;
-  ชื่อ: &lt;input type="text"&gt;&lt;br&gt;
-  Email: &lt;input type="email"&gt;&lt;br&gt;
-  &lt;input type="submit" value="ส่งข้อมูล"&gt;
-&lt;/form&gt;
-</code></pre>
-
-<p>ประเภท <code>&lt;input&gt;</code> ที่ใช้บ่อย</p>
-<ul>
-    <li>text – รับข้อความ</li>
-    <li>email – รับอีเมล</li>
-    <li>radio – เลือกได้ 1 ค่า</li>
-    <li>checkbox – เลือกได้หลายค่า</li>
-    <li>submit – ส่งข้อมูล</li>
-    <li>reset – ล้างข้อมูล</li>
-</ul>
-
-<p>ตัวอย่าง radio</p>
-<pre><code>
-เพศ:
-&lt;input type="radio" name="g"&gt; ชาย
-&lt;input type="radio" name="g"&gt; หญิง
-</code></pre>
-
-<p><strong>Textarea</strong> : พิมพ์ข้อความยาว</p>
-<pre><code>
-&lt;textarea rows="4" cols="30"&gt;&lt;/textarea&gt;
-</code></pre>
-
-<p><strong>Select &amp; Option</strong> : เลือกจากรายการ</p>
-<pre><code>
-&lt;select&gt;
-  &lt;option&gt;มัธยมต้น&lt;/option&gt;
-  &lt;option&gt;มัธยมปลาย&lt;/option&gt;
-&lt;/select&gt;
-</code></pre>
-<h3 style="align-content: center; color: red;">ตัวอย่าง กิจกรรม 5</h3>
-<div class="box">
-    <form>
-  ชื่อ:
-  <input type="text"><br><br>
-
-  Email:
-  <input type="email"><br><br>
-
-  เพศ:
-  <input type="radio" name="gender"> ชาย
-  <input type="radio" name="gender"> หญิง
+{id:'form',n:'กิจกรรมที่ 5',t:'ฟอร์ม (Form)',
+ intro:'ฟอร์มใช้รับข้อมูลจากผู้ใช้ ทุกช่องต้องอยู่ใน <code>&lt;form&gt;</code> ช่องกรอกส่วนใหญ่คือ <code>&lt;input&gt;</code> ซึ่งเปลี่ยนรูปร่างตาม <code>type</code> ทุกช่องควรมี <code>name</code> (ชื่อข้อมูลที่จะส่งไป) และควรมี <code>&lt;label&gt;</code> บอกว่าช่องนั้นกรอกอะไร โดยให้ <code>for</code> ของ label ตรงกับ <code>id</code> ของช่อง เมื่อกดที่ข้อความ เคอร์เซอร์จะไปที่ช่องนั้น',
+ tags:[['<form action="" method="post">','ครอบฟอร์ม action = ส่งไปที่ไหน, method = get/post'],['<label for="id">','ป้ายชื่อของช่องกรอก'],['<input type="...">','ช่องกรอก เปลี่ยนชนิดด้วย type'],['name','ชื่อของข้อมูลเมื่อส่ง (radio กลุ่มเดียวกันต้อง name เดียวกัน)'],['value','ค่าของช่อง / ข้อความบนปุ่ม'],['placeholder','ข้อความจาง ๆ เป็นตัวอย่างในช่อง'],['required','บังคับกรอก'],['checked / selected','เลือกไว้ก่อน (radio, checkbox / option)'],['<textarea rows cols>','กล่องพิมพ์ข้อความยาว'],['<select> <option>','รายการให้เลือก (dropdown)'],['<optgroup label>','จัดกลุ่ม option'],['<fieldset> <legend>','กรอบจัดกลุ่มช่อง พร้อมชื่อกลุ่ม'],['<button type="submit">','ปุ่มส่ง (ใส่ข้อความหรือรูปข้างในได้)']],
+ ex:[{t:'ฟอร์มพื้นฐานพร้อม label',h:210,c:`<form>
+  <label for="name">ชื่อ:</label>
+  <input type="text" id="name" name="name" placeholder="เช่น สมชาย" required>
   <br><br>
-
-  ความคิดเห็น:
-  <br>
-  <textarea rows="4" cols="30"></textarea>
+  <label for="mail">Email:</label>
+  <input type="email" id="mail" name="email" placeholder="you@mail.com">
   <br><br>
-
-  ระดับการศึกษา:
-  <select>
-    <option>มัธยมต้น</option>
-    <option>มัธยมปลาย</option>
-  </select>
-  <br><br>
-
   <input type="submit" value="ส่งข้อมูล">
   <input type="reset" value="ล้างข้อมูล">
-</form>
+</form>`,note:'ลองกดส่งโดยไม่กรอกชื่อ เบราว์เซอร์จะเตือนเพราะมี required'},
+ {t:'input ชนิดต่าง ๆ',h:420,c:`<form>
+  ข้อความ: <input type="text"><br><br>
+  รหัสผ่าน: <input type="password"><br><br>
+  ตัวเลข: <input type="number" min="1" max="100"><br><br>
+  วันเกิด: <input type="date"><br><br>
+  เวลา: <input type="time"><br><br>
+  เบอร์โทร: <input type="tel"><br><br>
+  เว็บไซต์: <input type="url"><br><br>
+  สีที่ชอบ: <input type="color" value="#d6127e"><br><br>
+  ระดับเสียง: <input type="range" min="0" max="10"><br><br>
+  แนบไฟล์: <input type="file"><br><br>
+  <input type="button" value="ปุ่มธรรมดา">
+</form>`},
+ {t:'radio (เลือกได้ 1) และ checkbox (เลือกได้หลายข้อ)',h:200,c:`<form>
+  <p>เพศ:</p>
+  <input type="radio" id="m" name="gender" value="male">
+  <label for="m">ชาย</label>
+  <input type="radio" id="f" name="gender" value="female">
+  <label for="f">หญิง</label>
 
-</div>
-<hr>
+  <p>งานอดิเรก:</p>
+  <input type="checkbox" id="h1" name="hobby" value="read" checked>
+  <label for="h1">อ่านหนังสือ</label>
+  <input type="checkbox" id="h2" name="hobby" value="game">
+  <label for="h2">เล่นเกม</label>
+  <input type="checkbox" id="h3" name="hobby" value="sport">
+  <label for="h3">เล่นกีฬา</label>
+</form>`,note:'radio ทุกตัวในกลุ่มเดียวกันต้องมี name เหมือนกัน ถ้า name ต่างกันจะเลือกได้พร้อมกันทุกตัว (ผิด)'},
+ {t:'textarea, select, fieldset',h:330,c:`<form>
+  <fieldset>
+    <legend>ข้อมูลการศึกษา</legend>
+    <label for="lv">ระดับชั้น:</label>
+    <select id="lv" name="level">
+      <optgroup label="มัธยมต้น">
+        <option>ม.1</option>
+        <option selected>ม.2</option>
+        <option>ม.3</option>
+      </optgroup>
+      <optgroup label="มัธยมปลาย">
+        <option>ม.4</option>
+        <option>ม.5</option>
+        <option>ม.6</option>
+      </optgroup>
+    </select>
+    <br><br>
+    <label for="msg">ความคิดเห็น:</label><br>
+    <textarea id="msg" name="msg" rows="4" cols="30"
+      placeholder="พิมพ์ได้หลายบรรทัด"></textarea>
+  </fieldset>
+  <br>
+  <button type="submit">ส่งข้อมูล</button>
+</form>`}],
+ task:{q:'สร้าง "ฟอร์มสมัครชุมนุม" ที่มี',items:['fieldset ชื่อ “ข้อมูลผู้สมัคร” มีช่องชื่อ (บังคับกรอก), อีเมล และวันเกิด พร้อม label ทุกช่อง','radio เลือกชุมนุม 1 อย่าง จาก 3 ชุมนุม','checkbox วันที่ว่าง จันทร์–ศุกร์','select ระดับชั้น ม.1–ม.6, textarea เหตุผลที่สมัคร และปุ่มส่งกับปุ่มล้าง'],a:`<form>
+  <fieldset>
+    <legend>ข้อมูลผู้สมัคร</legend>
+    <label for="n">ชื่อ-สกุล:</label>
+    <input type="text" id="n" name="name" required><br><br>
+    <label for="e">อีเมล:</label>
+    <input type="email" id="e" name="email"><br><br>
+    <label for="b">วันเกิด:</label>
+    <input type="date" id="b" name="birthday">
+  </fieldset>
+  <p>ชุมนุมที่สนใจ:</p>
+  <input type="radio" id="c1" name="club" value="robot"><label for="c1">หุ่นยนต์</label>
+  <input type="radio" id="c2" name="club" value="music"><label for="c2">ดนตรี</label>
+  <input type="radio" id="c3" name="club" value="art"><label for="c3">ศิลปะ</label>
+  <p>วันที่ว่าง:</p>
+  <input type="checkbox" id="d1" name="day" value="mon"><label for="d1">จันทร์</label>
+  <input type="checkbox" id="d2" name="day" value="tue"><label for="d2">อังคาร</label>
+  <input type="checkbox" id="d3" name="day" value="wed"><label for="d3">พุธ</label>
+  <input type="checkbox" id="d4" name="day" value="thu"><label for="d4">พฤหัส</label>
+  <input type="checkbox" id="d5" name="day" value="fri"><label for="d5">ศุกร์</label>
+  <br><br>
+  <label for="lv">ระดับชั้น:</label>
+  <select id="lv" name="level">
+    <option>ม.1</option><option>ม.2</option><option>ม.3</option>
+    <option>ม.4</option><option>ม.5</option><option>ม.6</option>
+  </select>
+  <br><br>
+  <label for="why">เหตุผลที่สมัคร:</label><br>
+  <textarea id="why" name="why" rows="3" cols="35"></textarea>
+  <br><br>
+  <input type="submit" value="สมัครชุมนุม">
+  <input type="reset" value="ล้างข้อมูล">
+</form>`}},
 
-<p style="text-align:center;"><strong>✔ จบสรุปแท็ก HTML กิจกรรม 3–5</strong></p>
+{id:'layout',n:'บทเสริม',t:'จัดโครงหน้าเว็บด้วยแท็ก Semantic',
+ intro:'แทนที่จะใช้ <code>&lt;div&gt;</code> ทุกที่ HTML5 มีแท็กที่บอกความหมายของแต่ละส่วน ช่วยให้อ่านโค้ดง่าย และ Google เข้าใจเว็บได้ดีขึ้น <code>&lt;div&gt;</code> ยังใช้ได้เสมอเมื่อแค่ต้องการกล่องครอบเพื่อแต่ง CSS เช่น <code>class="box"</code> ในงานของเรา',
+ tags:[['<header>','ส่วนหัวของเว็บ โลโก้ ชื่อเว็บ'],['<nav>','เมนูลิงก์'],['<main>','เนื้อหาหลัก (มี 1 อันต่อหน้า)'],['<section>','หมวดเนื้อหา'],['<article>','เนื้อหาที่อ่านแยกได้ เช่น ข่าว 1 ข่าว'],['<aside>','เนื้อหาข้างเคียง เช่น แถบด้านข้าง'],['<footer>','ส่วนท้าย ลิขสิทธิ์ ติดต่อ'],['<div>','กล่องทั่วไป ไม่มีความหมายพิเศษ'],['class / id','ชื่อสำหรับแต่ง CSS (class ใช้ซ้ำได้, id ห้ามซ้ำ)']],
+ ex:[{t:'หน้าเว็บโรงเรียนอย่างง่าย',h:330,c:`<style>
+  header, footer { background: #13242e; color: white; padding: 10px; }
+  nav a { margin-right: 12px; }
+  .box { border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin: 10px 0; }
+</style>
+<header><h2>โรงเรียนของเรา</h2></header>
+<nav>
+  <a href="#news">ข่าว</a>
+  <a href="#contact">ติดต่อ</a>
+</nav>
+<main>
+  <section id="news" class="box">
+    <h3>ข่าวประชาสัมพันธ์</h3>
+    <ul><li>สอบกลางภาค 1 ธ.ค.</li><li>กีฬาสี 15 ธ.ค.</li></ul>
+  </section>
+  <section id="contact" class="box">
+    <h3>ติดต่อ</h3>
+    <p>โทร 02-000-0000</p>
+  </section>
+</main>
+<footer>© 2569 โรงเรียนของเรา</footer>`}]}
+];
 
-</body>
-</html>
+const MIST=[['ลืมปิดแท็ก','เขียน <p>ข้อความ แล้วไม่ปิด </p> ทำให้รูปแบบลามไปส่วนอื่น ตรวจให้ทุกแท็กเปิดมีแท็กปิด (ยกเว้น br, hr, img, input, meta)'],
+['ซ้อนแท็กสลับกัน','<b><i>ข้อความ</b></i> ผิด ต้องเป็น <b><i>ข้อความ</i></b> ปิดตัวในก่อนเสมอ'],
+['li อยู่นอก ol/ul','<li> ต้องอยู่ใน <ol> หรือ <ul> เท่านั้น และรายการย่อยต้องอยู่ใน <li> ของข้อแม่'],
+['จำนวนช่องในแถวไม่เท่ากัน','ตารางจะเบี้ยว ถ้าใช้ colspan="2" ต้องลดช่องในแถวนั้นลง 1 ช่อง'],
+['th กับ td สลับหน้าที่','th ใช้กับหัวตาราง td ใช้กับข้อมูล อย่าใช้ th ทั้งตารางเพราะอยากได้ตัวหนา'],
+['radio คนละ name','radio ในกลุ่มเดียวกันต้อง name เดียวกัน ไม่งั้นติ๊กได้ทุกตัว'],
+['label for ไม่ตรง id','for="email" ต้องคู่กับ id="email" ตัวพิมพ์เล็ก-ใหญ่ต้องตรงกัน'],
+['รูปไม่ขึ้น','ตรวจชื่อไฟล์และนามสกุล (.jpg / .png) ตัวพิมพ์เล็ก-ใหญ่ และโฟลเดอร์ให้ตรง ใส่ alt ไว้เสมอ'],
+['ภาษาไทยเป็นตัวต่างดาว','ลืม <meta charset="UTF-8"> ใน head หรือบันทึกไฟล์ไม่ใช่ UTF-8'],
+['id ซ้ำกัน','id ต้องมีครั้งเดียวในหน้า ถ้าต้องใช้ซ้ำหลายที่ให้ใช้ class แทน']];
 
-<hr>
-</div>
-<p style="text-align:center;"><strong>📌 สรุป: นี่คือแท็กหลักที่ใช้ในกิจกรรม 3–5 และออกสอบบ่อย</strong></p>
+const Q=[['แท็กใดใช้สร้างรายการแบบมีตัวเลขลำดับ',['<ul>','<ol>','<dl>','<li>'],1,'ol = ordered list มีลำดับ ส่วน ul ใช้จุด'],
+['ถ้าต้องการให้ ol แสดงเป็น A, B, C ต้องใส่อะไร',['type="A"','start="A"','style="A"','list="A"'],0,'แอตทริบิวต์ type กำหนดชนิดตัวเลข: 1, A, a, I, i'],
+['แท็กใดคือ "แถว" ของตาราง',['<td>','<th>','<tr>','<table>'],2,'tr = table row ข้างในมี th หรือ td'],
+['ต้องการให้ช่องหนึ่งกว้างเท่ากับ 3 คอลัมน์ ใช้อะไร',['rowspan="3"','colspan="3"','width="3"','cols="3"'],1,'colspan รวมแนวนอน rowspan รวมแนวตั้ง'],
+['แท็กใดแสดงชื่อตารางเหนือตาราง',['<title>','<thead>','<caption>','<legend>'],2,'caption ต้องวางต่อจาก <table> ทันที'],
+['input ชนิดใดเลือกได้เพียง 1 ค่าจากกลุ่ม',['checkbox','radio','select','text'],1,'radio เลือกได้ 1 ค่าเมื่อ name เหมือนกัน checkbox เลือกได้หลายค่า'],
+['แอตทริบิวต์ใดบังคับให้ต้องกรอกช่องก่อนส่ง',['placeholder','value','required','checked'],2,'required ทำให้เบราว์เซอร์ไม่ยอมส่งถ้าช่องว่าง'],
+['ข้อใดใช้รับข้อความยาวหลายบรรทัด',['<input type="text">','<textarea>','<select>','<label>'],1,'textarea กำหนดขนาดด้วย rows และ cols'],
+['label for="tel" จะคู่กับช่องใด',['name="tel"','class="tel"','id="tel"','type="tel"'],2,'for ของ label ต้องตรงกับ id ของช่องกรอก'],
+['แท็กใดใช้จัดกลุ่มช่องในฟอร์มพร้อมกรอบและชื่อกลุ่ม',['<fieldset> + <legend>','<div> + <span>','<section> + <h3>','<group> + <name>'],0,'fieldset วาดกรอบ legend เป็นชื่อกลุ่มบนกรอบ']];
 
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.k);toast.k=setTimeout(()=>t.classList.remove('on'),1600)};
+const copy=async s=>{try{await navigator.clipboard.writeText(s);toast('คัดลอกแล้ว')}catch(e){toast('คัดลอกไม่ได้ ลองเลือกข้อความแล้วกด Ctrl+C')}};
+
+let k=0;
+const exHTML=(e)=>{const id='e'+(k++);EX[id]=e.c;return `<div class="ex"><h3>${esc(e.t)}</h3><pre><code>${hl(e.c)}</code></pre><div class="res"><iframe sandbox data-ex="${id}" style="height:${e.h}px" title="ผลลัพธ์ ${esc(e.t)}"></iframe><span>ผลลัพธ์</span></div>${e.note?`<p class="note">${esc(e.note)}</p>`:''}<div class="acts"><button class="pri" data-try="${id}" type="button">ลองในสนามทดลอง</button><button data-copy="${id}" type="button">คัดลอกโค้ด</button></div></div>`};
+
+document.getElementById('lessons').innerHTML=L.map(s=>{
+  let task='';
+  if(s.task){const id='e'+(k++);EX[id]=s.task.a;task=`<div class="task"><h3>แบบฝึกหัด: ${esc(s.task.q)}</h3><ol>${s.task.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ol><p>พิมพ์เองในสนามทดลองด้านบนก่อน แล้วค่อยเปิดดูเฉลย</p><details><summary>ดูเฉลย</summary><div class="ex"><pre><code>${hl(s.task.a)}</code></pre><div class="res"><iframe sandbox data-ex="${id}" style="height:420px" title="ผลลัพธ์เฉลย"></iframe><span>ผลลัพธ์</span></div><div class="acts"><button class="pri" data-try="${id}" type="button">เปิดเฉลยในสนามทดลอง</button><button data-copy="${id}" type="button">คัดลอกโค้ด</button></div></div></details></div>`}
+  return `<section class="band" id="${s.id}"><div class="wrap"><div class="stop">${esc(s.n)}</div><h2>${esc(s.t)}</h2><p>${s.intro}</p>
+  <table class="tags stack"><thead><tr><th>แท็ก / แอตทริบิวต์</th><th>ความหมาย</th></tr></thead><tbody>${s.tags.map(r=>`<tr><td><code>${esc(r[0])}</code></td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>
+  ${s.ex.map(exHTML).join('')}${s.tip?`<div class="tip"><strong>เคล็ดลับ:</strong> ${s.tip}</div>`:''}${task}</div></section>`}).join('');
+
+document.getElementById('route').innerHTML=[['playground','สนามทดลอง'],['structure','โครงสร้าง'],['text','ข้อความ'],['image','รูปภาพ'],['link','ลิงก์'],['list','กิจกรรม 3 รายการ'],['table','กิจกรรม 4 ตาราง'],['form','กิจกรรม 5 ฟอร์ม'],['layout','โครงหน้าเว็บ'],['mistakes','ข้อผิดพลาด'],['quiz','แบบทดสอบ'],['cheat','สรุปแท็ก']].map(([h,t])=>`<a href="#${h}">${esc(t.trim())}</a>`).join('');
+
+document.querySelectorAll('iframe[data-ex]').forEach(f=>f.srcdoc=prep(EX[f.dataset.ex]));
+
+const ed=document.getElementById('ed'),out=document.getElementById('out');
+const START=EX['e0'];
+let saved=null;try{saved=localStorage.getItem('html-play')}catch(e){}
+ed.value=saved||START;
+const run=()=>{out.srcdoc=prep(ed.value);try{localStorage.setItem('html-play',ed.value)}catch(e){}};
+let tm;ed.addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(run,300)});
+ed.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.shiftKey){e.preventDefault();const p=ed.selectionStart;ed.setRangeText('  ',p,ed.selectionEnd,'end');run()}});
+run();
+document.getElementById('pReset').onclick=()=>{ed.value=START;run();toast('เริ่มใหม่แล้ว')};
+document.getElementById('pCopy').onclick=()=>copy(ed.value);
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-try]'),c=e.target.closest('[data-copy]');
+  if(t){ed.value=EX[t.dataset.try];run();document.getElementById('playground').scrollIntoView({block:'start'});ed.focus({preventScroll:true});toast('โหลดโค้ดลงสนามทดลองแล้ว')}
+  if(c)copy(EX[c.dataset.copy]);
+});
+
+document.getElementById('mistList').innerHTML=MIST.map(m=>`<div><b>${esc(m[0])}</b>${esc(m[1])}</div>`).join('');
+
+const qL=document.getElementById('qList');
+qL.innerHTML=Q.map((q,i)=>`<div class="q"><h3>${i+1}. ${esc(q[0])}</h3>${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> <code>${esc(o)}</code></label>`).join('')}<p class="fb" id="fb${i}"></p></div>`).join('');
+document.getElementById('qCheck').onclick=()=>{let s=0;Q.forEach((q,i)=>{const v=document.querySelector(`input[name=q${i}]:checked`),f=document.getElementById('fb'+i);
+  if(!v){f.className='fb no';f.textContent='ยังไม่ได้ตอบ';return}
+  const ok=+v.value===q[2];if(ok)s++;f.className='fb '+(ok?'ok':'no');f.textContent=(ok?'ถูกต้อง: ':'ยังไม่ถูก คำตอบคือ '+q[1][q[2]]+' — ')+q[3]});
+  document.getElementById('qScore').textContent=`ได้ ${s} จาก ${Q.length} คะแนน`+(s===Q.length?' เยี่ยมมาก':s>=7?' ผ่านแล้ว ทบทวนข้อที่ผิดอีกนิด':' ลองย้อนอ่านบทที่ผิดแล้วทำใหม่')};
+document.getElementById('qClear').onclick=()=>{qL.querySelectorAll('input').forEach(i=>i.checked=false);qL.querySelectorAll('.fb').forEach(f=>f.textContent='');document.getElementById('qScore').textContent=''};
+
+const cat={structure:'โครงสร้าง',text:'ข้อความ',image:'รูปภาพ',link:'ลิงก์',list:'รายการ',table:'ตาราง',form:'ฟอร์ม',layout:'โครงหน้า'};
+document.querySelector('#cheatTable tbody').innerHTML=L.flatMap(s=>s.tags.filter(r=>r[0].startsWith('<')).map(r=>`<tr><td><code>${esc(r[0])}</code></td><td>${cat[s.id]}</td><td>${esc(r[1])}</td></tr>`)).join('');
+}
+</script>
 </body>
 </html>
